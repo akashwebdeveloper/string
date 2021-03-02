@@ -19,6 +19,6 @@ app.use(bodyparser.urlencoded({extended: false}))
 app.use(bodyparser.json())
 
 app.use(require('./routes/post'))
-
+app.use('/api', require('./routes/scoreboard'))
 
 app.listen(port, ()=> console.log(`Connected to port ${port}`))
