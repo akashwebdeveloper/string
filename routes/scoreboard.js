@@ -4,25 +4,20 @@ const Scoreboard =  require('../models/scoreboard')
 
 
 router.post('/scoreboard',(req,res)=>{
-    const { string } = req.body
-
-    const parse = JSON.parse(string)
-
-    
+    const { _token,mypoint,id,email } = req.body
 
     const scoreboard = new Scoreboard({
-        uniqueId: parse.uniqueId || "",
-        token: parse.token || "",
-        myPoint: parse.myPoint || "",
-        emailId: parse.emailId || ""
+        _token: _token || "",
+        mypoint: mypoint || "",
+        id: id || "",
+        email: email || ""
     })
 
     // New User Save to database
     scoreboard.save().then(post => {
         // login
-        const uid = JSON.parse(post.uniqueId)
         
-        Scoreboard.find({ uniqueId: uid },{'_id':false} ,(err, values) => {
+        Scoreboard.find({ id: post.id },{'_id':false} ,(err, values) => {
             if (err) {
                 return res.status(502).json({
                     success: false,

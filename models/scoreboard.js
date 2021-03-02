@@ -1,18 +1,18 @@
 const mongoose = require('mongoose')
 const scoreboardSchema = new mongoose.Schema({
-    uniqueId:{
-        type:Number,
-        required:true
-    },
-    token:{
+    id:{
         type:String,
         required:true
     },
-    myPoint:{
+    _token:{
         type:String,
         required:true
     },
-    emailId:{
+    mypoint:{
+        type:String,
+        required:true
+    },
+    email:{
         type:String,
         required:true
     },
