@@ -20,6 +20,10 @@ const scoreboardSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    Hand:{
+        type:String,
+        required:true
+    },
 })
 
 module.exports =  mongoose.model("Scoreboard",scoreboardSchema);

@@ -4,14 +4,15 @@ const Scoreboard = require('../models/scoreboard')
 
 
 router.post('/scoreboard', (req, res) => {
-    const { _token, mypoint, id, email, TotalPlayer } = req.body
+    const { _token, mypoint, id, email, TotalPlayer, Hand } = req.body
 
     const scoreboard = new Scoreboard({
         _token: _token || "",
         mypoint: mypoint || "",
         id: id || "",
         email: email || "",
-        TotalPlayer: TotalPlayer || ""
+        TotalPlayer: TotalPlayer || "",
+        Hand: Hand || ""
     })
 
     // New User Save to database
@@ -19,7 +20,7 @@ router.post('/scoreboard', (req, res) => {
         // login
         let timerId = setInterval(() => {
 
-            Scoreboard.find({ id: post.id }, { mypoint: 1, id: 1, email: 1, TotalPlayer: 1, _id: 0 }, (err, values) => {
+            Scoreboard.find({ id: post.id }, { mypoint: 1, id: 1, email: 1, TotalPlayer: 1, Hand:1, _id: 0 }, (err, values) => {
                 if (err) {
                     return res.status(502).json({
                         success: false,
