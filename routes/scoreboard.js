@@ -4,7 +4,7 @@ const Scoreboard = require('../models/scoreboard')
 
 
 router.post('/scoreboard', (req, res) => {
-    const { _token, mypoint, id, email, TotalPlayer, Hand } = req.body
+    const { _token, mypoint, id, email, TotalPlayer, Hand, highscore, balance} = req.body
 
     const scoreboard = new Scoreboard({
         _token: _token || "",
@@ -12,7 +12,9 @@ router.post('/scoreboard', (req, res) => {
         id: id || "",
         email: email || "",
         TotalPlayer: TotalPlayer || "",
-        Hand: Hand || ""
+        Hand: Hand || "",
+        highscore: highscore || "",
+        balance: balance || "",
     })
 
     // New User Save to database
@@ -32,7 +34,7 @@ router.post('/scoreboard', (req, res) => {
                 const length = values.length;
                 if (length >= 2) {
                     clearInterval(timerId)
-                    return res.status(200).end(JSON.stringify(values))
+                    return res.status(200).end(JSON.stringify({data: values}))
                 }
             })
 

@@ -24,6 +24,14 @@ const scoreboardSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    highscore:{
+        type:String,
+        required:true
+    },
+    balance:{
+        type:String,
+        required:true
+    },
 })
 
 module.exports =  mongoose.model("Scoreboard",scoreboardSchema);
