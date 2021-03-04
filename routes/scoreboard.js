@@ -22,7 +22,7 @@ router.post('/scoreboard', (req, res) => {
         // login
         let timerId = setInterval(() => {
 
-            Scoreboard.find({ id: post.id }, { mypoint: 1, id: 1, email: 1, TotalPlayer: 1, Hand:1, _id: 0 }, (err, values) => {
+            Scoreboard.find({ id: post.id }, { mypoint: 1, id: 1, email: 1, TotalPlayer: 1, Hand:1, highscore:1, balance:1, _id: 0 }, (err, values) => {
                 if (err) {
                     return res.status(502).json({
                         success: false,
@@ -46,6 +46,29 @@ router.post('/scoreboard', (req, res) => {
             status: 503,
             message: "err from database",
             err
+        })
+    })
+})
+
+
+
+
+router.post('/clearscoreboard', (req, res) => {
+    const { _token, id} = req.body
+
+    Scoreboard.deleteOne({$and: [{id: id}, {_token: _token}]},(err)=>{
+        if (err) {
+            return res.status(503).json({
+                success: 0,
+                status: 503,
+                message: "err from database",
+                err
+            })
+        }
+
+        return res.status(200).json({
+            success: 1,
+            message: "deleted successfully",
         })
     })
 })
